@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainees Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="../css/sytels.css">
+    <link rel="stylesheet" href="../css/trinees-mangment.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Training Admin</h3>
+        </div>
+        <div class="sidebar-menu">
+            <div class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <a href="dashboard.html"><span>Dashboard</span></a>
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-book"></i>
+                <a href="course-management.html"><span>Courses Management</span></a>
+            </div>
+            <div class="menu-item active">
+                <i class="fas fa-users"></i>
+                <a href="#"><span>Trainees Management</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Trainees Management</h1>
+            <div class="user-info" id="userInfo">
+                <img src="/api/placeholder/40/40" alt="Admin">
+                <span>Admin User</span>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <a href="profile.html"><span>View Profile</span></a>
+                    </div>
+                    <div class="profile-dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a href="../landingPage.html"><span>Logout</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Container -->
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="trainees">Trainees</div>
+                <div class="tab" data-tab="course-registration">Course Registration</div>
+                <div class="tab" data-tab="attendance">Attendance</div>
+            </div>
+
+            <!-- Trainees Tab -->
+            <div class="tab-content active" id="trainees">
+                <button class="btn btn-primary" id="addTraineeBtn"><i class="fas fa-plus"></i> Add New Trainee</button>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Registration Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>T001</td>
+                            <td>Ahmed Mohamed</td>
+                            <td>ahmed.m@example.com</td>
+                            <td>+966 50 123 4567</td>
+                            <td>15-02-2024</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-trainee"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-trainee"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-trainee"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>T002</td>
+                            <td>Sara Ahmed</td>
+                            <td>sara.a@example.com</td>
+                            <td>+966 55 987 6543</td>
+                            <td>20-02-2024</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-trainee"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-trainee"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-trainee"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>T003</td>
+                            <td>Khalid Alharbi</td>
+                            <td>khalid.h@example.com</td>
+                            <td>+966 54 456 7890</td>
+                            <td>25-02-2024</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-trainee"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-trainee"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-trainee"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>T004</td>
+                            <td>Fatima Rahman</td>
+                            <td>fatima.r@example.com</td>
+                            <td>+966 56 321 6547</td>
+                            <td>01-03-2024</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-trainee"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-trainee"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-trainee"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>T005</td>
+                            <td>Omar Saleh</td>
+                            <td>omar.s@example.com</td>
+                            <td>+966 59 789 0123</td>
+                            <td>05-03-2024</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-trainee"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-trainee"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-trainee"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Course Registration Tab -->
+            <div class="tab-content" id="course-registration">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search by trainee ID, course ID, or date...">
+                    <button><i class="fas fa-search"></i> Search</button>
+                </div>
+                <button class="btn btn-primary" id="addRegistrationBtn"><i class="fas fa-plus"></i> New Registration</button>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Registration ID</th>
+                            <th>Trainee ID</th>
+                            <th>Trainee Name</th>
+                            <th>Course ID</th>
+                            <th>Course Name</th>
+                            <th>Registration Date</th>
+                            <th>Certificate Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>R001</td>
+                            <td>T001</td>
+                            <td>Ahmed Mohamed</td>
+                            <td>C001</td>
+                            <td>Web Development Basics</td>
+                            <td>18-02-2024</td>
+                            <td><span class="status-badge status-completed">Certified</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-registration"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-registration"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-registration"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>R002</td>
+                            <td>T002</td>
+                            <td>Sara Ahmed</td>
+                            <td>C002</td>
+                            <td>Digital Marketing</td>
+                            <td>22-02-2024</td>
+                            <td><span class="status-badge status-active">In Progress</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-registration"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-registration"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-registration"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>R003</td>
+                            <td>T001</td>
+                            <td>Ahmed Mohamed</td>
+                            <td>C003</td>
+                            <td>Data Analysis</td>
+                            <td>01-03-2024</td>
+                            <td><span class="status-badge status-active">In Progress</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-registration"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-registration"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-registration"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>R004</td>
+                            <td>T004</td>
+                            <td>Fatima Rahman</td>
+                            <td>C002</td>
+                            <td>Digital Marketing</td>
+                            <td>03-03-2024</td>
+                            <td><span class="status-badge status-completed">Certified</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-registration"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-registration"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-registration"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>R005</td>
+                            <td>T005</td>
+                            <td>Omar Saleh</td>
+                            <td>C001</td>
+                            <td>Web Development Basics</td>
+                            <td>08-03-2024</td>
+                            <td><span class="status-badge status-active">In Progress</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-info btn-view-registration"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-primary btn-edit-registration"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-delete-registration"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Attendance Tab -->
+            <div class="tab-content" id="attendance">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="attendance-course">Select Course</label>
+                            <select class="form-control" id="attendance-course">
+                                <option value="">-- Select Course --</option>
+                                <option value="C001">Web Development Basics (C001)</option>
+                                <option value="C002">Digital Marketing (C002)</option>
+                                <option value="C003">Data Analysis (C003)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group attendance-date">
+                            <label for="attendance-date">Select Date</label>
+                            <input type="date" class="form-control" id="attendance-date">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="loadAttendanceBtn"><i class="fas fa-sync-alt"></i> Load Attendance</button>
+                
+                <div class="attendance-list" style="margin-top: 20px;">
+                    <div class="attendance-item">
+                        <div class="attendance-item-info">
+                            <div class="attendance-name">Ahmed Mohamed</div>
+                            <div class="attendance-id">Trainee ID: T001</div>
+                        </div>
+                        <div class="attendance-status">
+                            <input type="radio" name="attendance-T001" id="present-T001" class="attendance-radio" checked>
+                            <label for="present-T001" class="attendance-label attendance-label-present">Present</label>
+                            
+                            <input type="radio" name="attendance-T001" id="late-T001" class="attendance-radio">
+                            <label for="late-T001" class="attendance-label attendance-label-late">Late</label>
+                            
+                            <input type="radio" name="attendance-T001" id="absent-T001" class="attendance-radio">
+                            <label for="absent-T001" class="attendance-label attendance-label-absent">Absent</label>
+                        </div>
+                    </div>
+                    <div class="attendance-item">
+                        <div class="attendance-item-info">
+                            <div class="attendance-name">Sara Ahmed</div>
+                            <div class="attendance-id">Trainee ID: T002</div>
+                        </div>
+                        <div class="attendance-status">
+                            <input type="radio" name="attendance-T002" id="present-T002" class="attendance-radio">
+                            <label for="present-T002" class="attendance-label attendance-label-present">Present</label>
+                            
+                            <input type="radio" name="attendance-T002" id="late-T002" class="attendance-radio" checked>
+                            <label for="late-T002" class="attendance-label attendance-label-late">Late</label>
+                            
+                            <input type="radio" name="attendance-T002" id="absent-T002" class="attendance-radio">
+                            <label for="absent-T002" class="attendance-label attendance-label-absent">Absent</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="attendance-actions" style="margin-top: 20px; text-align: right;">
+                    <button class="btn btn-success" id="saveAttendanceBtn">
+                        <i class="fas fa-save"></i> Save Attendance
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal" id="registrationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">New Course Registration</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="registrationForm">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="reg-trainee">Trainee</label>
+                                <select class="form-control" id="reg-trainee" required>
+                                    <option value="">-- Select Trainee --</option>
+                                    <option value="T001">Ahmed Mohamed (T001)</option>
+                                    <option value="T002">Sara Ahmed (T002)</option>
+                                    <option value="T003">Khalid Alharbi (T003)</option>
+                                    <option value="T004">Fatima Rahman (T004)</option>
+                                    <option value="T005">Omar Saleh (T005)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="reg-course">Course</label>
+                                <select class="form-control" id="reg-course" required>
+                                    <option value="">-- Select Course --</option>
+                                    <option value="C001">Web Development Basics (C001)</option>
+                                    <option value="C002">Digital Marketing (C002)</option>
+                                    <option value="C003">Data Analysis (C003)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-date">Registration Date</label>
+                        <input type="date" class="form-control" id="reg-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Certificate Status</label>
+                        <div>
+                            <input type="radio" id="cert-pending" name="cert-status" value="pending" checked>
+                            <label for="cert-pending">In Progress</label>
+                            
+                            <input type="radio" id="cert-completed" name="cert-status" value="completed">
+                            <label for="cert-completed">Certified</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveRegistration">Save</button>
+                <button class="btn btn-danger" id="cancelRegistration">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trainee Modal -->
+    <div class="modal" id="traineeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="traineeModalTitle">Add New Trainee</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="traineeForm">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="trainee-id">Trainee ID</label>
+                                <input type="text" class="form-control" id="trainee-id" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="trainee-name">Full Name</label>
+                                <input type="text" class="form-control" id="trainee-name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="trainee-email">Email</label>
+                                <input type="email" class="form-control" id="trainee-email" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="trainee-phone">Phone</label>
+                                <input type="tel" class="form-control" id="trainee-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="trainee-reg-date">Registration Date</label>
+                        <input type="date" class="form-control" id="trainee-reg-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="trainee-status">Status</label>
+                        <select class="form-control" id="trainee-status" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveTrainee">Save</button>
+                <button class="btn btn-danger" id="cancelTrainee">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching functionality
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs and contents
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+
+    // Profile dropdown toggle
+    const userInfo = document.getElementById('userInfo');
+    const profileDropdown = document.getElementById('profileDropdown');
+    
+    userInfo.addEventListener('click', function(e) {
+        e.stopPropagation();
+        profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+        profileDropdown.style.display = 'none';
+    });
+
+    // Registration modal
+    const regModal = document.getElementById('registrationModal');
+    const addRegBtn = document.getElementById('addRegistrationBtn');
+    const closeRegModal = document.querySelector('#registrationModal .close-modal');
+    const cancelRegBtn = document.getElementById('cancelRegistration');
+    const saveRegBtn = document.getElementById('saveRegistration');
+
+    addRegBtn.addEventListener('click', function() {
+        regModal.style.display = 'flex';
+    });
+
+    closeRegModal.addEventListener('click', function() {
+        regModal.style.display = 'none';
+    });
+
+    cancelRegBtn.addEventListener('click', function() {
+        regModal.style.display = 'none';
+    });
+
+    saveRegBtn.addEventListener('click', function() {
+        const form = document.getElementById('registrationForm');
+        if (form.checkValidity()) {
+            // Here you would typically send data to server
+            const registrationData = {
+                traineeId: document.getElementById('reg-trainee').value,
+                courseId: document.getElementById('reg-course').value,
+                date: document.getElementById('reg-date').value,
+                certStatus: document.querySelector('input[name="cert-status"]:checked').value
+            };
+            
+            console.log('Registration data:', registrationData);
+            swal("Success!", "Registration saved successfully", "success");
+            regModal.style.display = 'none';
+            form.reset();
+        } else {
+            swal("Error", "Please fill all required fields", "error");
+        }
+    });
+
+    // Trainee modal
+    const traineeModal = document.getElementById('traineeModal');
+    const addTraineeBtn = document.getElementById('addTraineeBtn');
+    const closeTraineeModal = document.querySelector('#traineeModal .close-modal');
+    const cancelTraineeBtn = document.getElementById('cancelTrainee');
+    const saveTraineeBtn = document.getElementById('saveTrainee');
+    const traineeModalTitle = document.getElementById('traineeModalTitle');
+
+    // Add new trainee
+    addTraineeBtn.addEventListener('click', function() {
+        traineeModalTitle.textContent = "Add New Trainee";
+        document.getElementById('traineeForm').reset();
+        traineeModal.style.display = 'flex';
+    });
+
+    // Edit trainee (example for first row)
+    document.querySelector('.btn-edit-trainee')?.addEventListener('click', function() {
+        const row = this.closest('tr');
+        traineeModalTitle.textContent = "Edit Trainee";
+        
+        document.getElementById('trainee-id').value = row.cells[0].textContent;
+        document.getElementById('trainee-name').value = row.cells[1].textContent;
+        document.getElementById('trainee-email').value = row.cells[2].textContent;
+        document.getElementById('trainee-phone').value = row.cells[3].textContent;
+        document.getElementById('trainee-reg-date').value = formatDateForInput(row.cells[4].textContent);
+        document.getElementById('trainee-status').value = row.cells[5].querySelector('.status-badge').textContent.toLowerCase();
+        
+        traineeModal.style.display = 'flex';
+    });
+
+    closeTraineeModal.addEventListener('click', function() {
+        traineeModal.style.display = 'none';
+    });
+
+    cancelTraineeBtn.addEventListener('click', function() {
+        traineeModal.style.display = 'none';
+    });
+
+    saveTraineeBtn.addEventListener('click', function() {
+        const form = document.getElementById('traineeForm');
+        if (form.checkValidity()) {
+            // Here you would typically send data to server
+            const traineeData = {
+                id: document.getElementById('trainee-id').value,
+                name: document.getElementById('trainee-name').value,
+                email: document.getElementById('trainee-email').value,
+                phone: document.getElementById('trainee-phone').value,
+                regDate: document.getElementById('trainee-reg-date').value,
+                status: document.getElementById('trainee-status').value
+            };
+            
+            console.log('Trainee data:', traineeData);
+            swal("Success!", "Trainee saved successfully", "success");
+            traineeModal.style.display = 'none';
+            
+            // In a real app, you would update the table with the new data
+        } else {
+            swal("Error", "Please fill all required fields", "error");
+        }
+    });
+
+    // Delete trainee (example for first row)
+    document.querySelector('.btn-delete-trainee')?.addEventListener('click', function() {
+        const row = this.closest('tr');
+        const traineeName = row.cells[1].textContent;
+        
+        swal({
+            title: "Are you sure?",
+            text: `You are about to delete ${traineeName}. This action cannot be undone.`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                // Here you would typically send delete request to server
+                console.log('Deleting trainee:', row.cells[0].textContent);
+                swal("Deleted!", `${traineeName} has been deleted.`, "success");
+                // In a real app, you would remove the row from the table
+            }
+        });
+    });
+
+    // Attendance functionality
+    const loadAttendanceBtn = document.getElementById('loadAttendanceBtn');
+    const saveAttendanceBtn = document.getElementById('saveAttendanceBtn');
+
+    loadAttendanceBtn.addEventListener('click', function() {
+        const courseId = document.getElementById('attendance-course').value;
+        const date = document.getElementById('attendance-date').value;
+        
+        if (!courseId || !date) {
+            swal("Error", "Please select both course and date", "error");
+            return;
+        }
+        
+        // Here you would typically load attendance from server
+        console.log('Loading attendance for:', courseId, date);
+        swal("Success!", "Attendance data loaded", "success");
+    });
+
+    saveAttendanceBtn.addEventListener('click', function() {
+        // Collect attendance data and send to server
+        const attendanceData = [];
+        document.querySelectorAll('.attendance-item').forEach(item => {
+            const traineeId = item.querySelector('.attendance-id').textContent.split(': ')[1];
+            const status = item.querySelector('input[type="radio"]:checked + label').textContent;
+            
+            attendanceData.push({
+                traineeId: traineeId,
+                status: status,
+                courseId: document.getElementById('attendance-course').value,
+                date: document.getElementById('attendance-date').value
+            });
+        });
+
+        // Here you would typically send data to server
+        console.log('Attendance data:', attendanceData);
+        swal("Success!", "Attendance saved successfully", "success");
+    });
+
+    // Helper function to format date for input field
+    function formatDateForInput(dateString) {
+        const parts = dateString.split('-');
+        if (parts.length === 3) {
+            return `${parts[2]}-${parts[1]}-${parts[0]}`;
+        }
+        return dateString;
+    }
+});
+    </script>
+</body>
+</html>

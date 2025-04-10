@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/sytels.css">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Training Admin</h3>
+        </div>
+        <div class="sidebar-menu">
+            <div class="menu-item active">
+                <i class="fas fa-tachometer-alt"></i>
+             <a href="dasboard.html">  <span>Dashboard</span></a> 
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-book"></i>
+             <a href="course-mangement.html">  <span>Courses Management</span></a> 
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-users"></i>
+               <a href="trainees managment.html"><span>Trainees Management</span></a> 
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <div class="user-info" id="userInfo">
+                <img src="https://via.placeholder.com/40" alt="Admin">
+                <span>Admin User</span>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-dropdown-item" id="viewProfile">
+                        <i class="fas fa-user"></i>
+                       <a href="profile.html" ><span>View Profile</span></a>
+                    </div>
+                    <div class="profile-dropdown-item" id="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    <a href="../langingPage.html"></a> <span>Logout</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Profile Page -->
+        <div class="profile-page" id="profilePage">
+            <div class="profile-header">
+                <h2>Admin Profile</h2>
+            </div>
+            <div class="profile-content">
+                <div>
+                    <img src="https://via.placeholder.com/150" alt="Admin Profile" class="profile-image">
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 15px;">
+                        <i class="fas fa-camera"></i> Change Photo
+                    </button>
+                </div>
+                
+                <div class="profile-details">
+                    <div class="form-group">
+                        <label for="adminId">Admin ID</label>
+                        <input type="text" id="adminId" value="ADM-001" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminName">Full Name</label>
+                        <input type="text" id="adminName" value="John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminEmail">Email Address</label>
+                        <input type="email" id="adminEmail" value="john.doe@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPhone">Phone Number</label>
+                        <input type="tel" id="adminPhone" value="+966501234567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input type="text" id="adminUsername" value="johndoe">
+                    </div>
+                    
+                    <div class="form-group password-toggle">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" value="password123">
+                        <i class="fas fa-eye" id="togglePassword"></i>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" id="cancelChanges">Cancel</button>
+                        <button class="btn btn-primary" id="saveChanges">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="../js/script"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userInfo = document.getElementById('userInfo');
+            const profileDropdown = document.getElementById('profileDropdown');
+            const viewProfile = document.getElementById('viewProfile');
+            const profilePage = document.getElementById('profilePage');
+            const backToDashboard = document.getElementById('backToDashboard');
+            const dashboardMenuItem = document.getElementById('dashboardMenuItem');
+            const togglePassword = document.getElementById('togglePassword');
+            const adminPassword = document.getElementById('adminPassword');
+            const saveChanges = document.getElementById('saveChanges');
+            const cancelChanges = document.getElementById('cancelChanges');
+            const logout = document.getElementById('logout');
+
+            // Toggle profile dropdown
+            userInfo.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileDropdown.classList.add('active');
+            });
+
+            // Close dropdown when clicking elsewhere
+            document.addEventListener('click', function() {
+                profileDropdown.classList.remove('active');
+            });
+
+            // View profile functionality
+            viewProfile.addEventListener('click', function(e) {
+                e.stopPropagation();
+
+                profilePage.classList.add('active');
+                profileDropdown.classList.remove('active');
+            });
+
+
+            // Dashboard menu item functionality
+            dashboardMenuItem.addEventListener('click', function() {
+                profilePage.classList.remove('active');
+                dashboardContent.style.display = 'block';
+            });
+
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = adminPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                adminPassword.setAttribute('type', type);
+                togglePassword.classList.toggle('fa-eye-slash');
+                togglePassword.classList.toggle('fa-eye');
+            });
+
+            // Save changes button
+            saveChanges.addEventListener('click', function() {
+                alert('Changes saved successfully!');
+                // In a real application, you would send the data to the server here
+            });
+
+            // Cancel changes button
+            cancelChanges.addEventListener('click', function() {
+                // Reset form to original values
+                document.getElementById('adminName').value = 'Ahmed mohamed';
+                document.getElementById('adminEmail').value = 'ahmed.mohamed@example.com';
+                document.getElementById('adminPhone').value = '+966501234567';
+                document.getElementById('adminUsername').value = 'ahmedmohmed';
+                document.getElementById('adminPassword').value = 'password123';
+                alert('Changes discarded');
+            });
+
+            // Logout functionality
+            logout.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (confirm('Are you sure you want to logout?')) {
+                    alert('Logged out successfully');
+                    // In a real application, you would redirect to login page
+                }
+            });
+
+            // Populate form fields with admin data
+            const adminData = {
+                id: "ADM-001",
+                name: "Ahmed Mohamed",
+                email: "Ahmed.Mohmed@example.com",
+                phone: "+966501234567",
+                username: "Ahmed Mohmed",
+                password: "password123"
+            };
+
+            document.getElementById('adminId').value = adminData.id;
+            document.getElementById('adminName').value = adminData.name;
+            document.getElementById('adminEmail').value = adminData.email;
+            document.getElementById('adminPhone').value = adminData.phone;
+            document.getElementById('adminUsername').value = adminData.username;
+            document.getElementById('adminPassword').value = adminData.password;
+        });
+    </script>
+
+</body>
+</html>

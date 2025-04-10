@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Strategic Analysis System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+    --color-primary:#F4B183;
+            --color-secondary: #8B2C15;
+            --accent-color: #B43F18;
+            --color-light: #8B2C15;
+            --color-highlight: #cdd0c7;
+            --dark-color: #5A1E0E;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #F4B183 0%, #5A1E0E 100%);
+        }
+        
+        .welcome-container {
+            max-width: 900px;
+            padding: 2rem;
+            text-align: center;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .welcome-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .welcome-text {
+            color: var(--dark-color);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .role-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .role-card {
+            width: 250px;
+            padding: 2rem 1.5rem;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .role-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--secondary-color);
+        }
+        
+        .role-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .role-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .role-button i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .role-card:hover .role-button i {
+            transform: translateX(-3px);
+        }
+        
+        /* Role-specific colors */
+        .admin-card .role-icon {
+            color: #e74c3c;
+        }
+        
+        .admin-card .role-button {
+            background-color: #e74c3c;
+        }
+        .admin-card .role-button:hover{
+            background-color: #e74c3c;
+        }
+        
+        .manager-card .role-icon {
+            color: #f39c12;
+        }
+        
+        .manager-card .role-button {
+            background-color: #f39c12;
+        }
+        .manager-card .role-button:hover{
+            background-color: #f39c12;
+        }
+        .analyst-card .role-icon {
+            color: #27ae60;
+        }
+        
+        .analyst-card .role-button {
+            background-color: #27ae60;
+        }
+        .analyst-card .role-button:hover{
+            background-color: #27ae60;
+        }
+        
+        @media (max-width: 768px) {
+            .role-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .role-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1 class="welcome-title">Welcome to e-Gate</h1>
+        <p class="welcome-text">The Training eGate System is an innovative platform designed to streamline and enhance the process of employee training within organizations.</p>
+        
+        <div class="role-cards">
+            <div class="role-card admin-card" onclick="window.location.href='./login.html'">
+                <div class="role-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="role-title">Admin</h3>
+                <p class="text-muted mb-3">System configuration and management</p>
+                <button class="role-button">
+                    Login as Admin
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <div class="role-card manager-card" onclick="window.location.href=''">
+                <div class="role-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="role-title">Trainer</h3>
+               <p class="text-muted mb-3">Manage course content and monitor student progress</p>
+           
+                <button class="role-button">
+                    Login as Trainer
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <div class="role-card analyst-card" onclick="window.location.href=''">
+                <div class="role-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 class="role-title">Trainee</h3>
+                <p class="text-muted mb-3"></p>
+                <button class="role-button">
+                    Login as Trainee
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        localStorage.setItem('isLoggedIn', 'false');
+        document.querySelectorAll('.role-card').forEach(card => {
+            card.addEventListener('click', function() {
+                console.log('Navigating to:', this.getAttribute('onclick').match(/'(.*?)'/)[1]);
+            });
+        });
+    </script>
+</body>
+</html>
