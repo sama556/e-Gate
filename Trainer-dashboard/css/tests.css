@@ -1,0 +1,490 @@
+/* Enhanced Tests & Assignments Styles */
+.tests-management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.test-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: var(--deep-chocolate-brown);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--burnt-orange);
+}
+
+.test-form-container {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--deep-chocolate-brown);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--light-orange-peach);
+    outline: none;
+}
+
+.question-item {
+    background: var(--light-gray);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.question-number {
+    font-weight: bold;
+    color: var(--deep-chocolate-brown);
+}
+
+.remove-question {
+    background: transparent;
+    border: none;
+    color: var(--reddish-orange);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.option-item input[type="radio"],
+.option-item input[type="checkbox"] {
+    flex-shrink: 0;
+}
+
+.option-item input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.remove-option {
+    background: transparent;
+    border: none;
+    color: #999;
+    cursor: pointer;
+}
+
+.add-option {
+    background: transparent;
+    border: none;
+    color: var(--burnt-orange);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.add-question {
+    background: var(--light-orange-peach);
+    color: var(--deep-chocolate-brown);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.add-question:hover {
+    background: var(--burnt-orange);
+    color: white;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.test-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.test-table th {
+    background: var(--deep-chocolate-brown);
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+.test-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.test-table tr:hover {
+    background: rgba(244, 177, 131, 0.1);
+}
+
+.test-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-draft {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-published {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-closed {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.test-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.btn-grade {
+    background: var(--light-orange-peach);
+    color: var(--deep-chocolate-brown);
+}
+
+.btn-grade:hover {
+    background: var(--burnt-orange);
+    color: white;
+}
+
+.btn-edit {
+    background: var(--burnt-orange);
+    color: white;
+}
+
+.btn-edit:hover {
+    background: var(--reddish-orange);
+}
+
+.btn-delete {
+    background: var(--reddish-orange);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: var(--dark-brick-red);
+}
+
+.btn-preview {
+    background: var(--light-gray);
+    color: var(--deep-chocolate-brown);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px;
+}
+
+.empty-state i {
+    font-size: 3.5rem;
+    color: var(--light-orange-peach);
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    color: var(--deep-chocolate-brown);
+    margin-bottom: 10px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--deep-chocolate-brown);
+}
+
+.modal-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Edit modal specific styles */
+#edit-questions-container {
+    margin-top: 20px;
+}
+
+#edit-modal .test-form {
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+#edit-modal .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Better radio button styling */
+.option-item input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 8px;
+    position: relative;
+    cursor: pointer;
+}
+
+.option-item input[type="radio"]:checked {
+    border-color: var(--burnt-orange);
+}
+
+.option-item input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: var(--burnt-orange);
+    border-radius: 50%;
+}
+
+/* Survey specific styles */
+.question-type, .question-required {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.question-type select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.question-required label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.scale-options {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+/* Checkbox group styles */
+.checkbox-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* Better textarea styling */
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Button styles */
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .test-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .test-actions {
+        flex-direction: column;
+    }
+
+    .btn-action {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .test-actions {
+        flex-wrap: wrap;
+    }
+    
+    .btn-action {
+        margin-bottom: 5px;
+    }
+}

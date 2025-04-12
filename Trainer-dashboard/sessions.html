@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Sessions</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="css/sessions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Trainer Panel</h3>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="course-management.html" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span>Course Content</span>
+            </a>
+            <a href="sessions.html" class="menu-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Live Sessions</span>
+            </a>
+            <a href="tests.html" class="menu-item">
+                <i class="fas fa-tasks"></i>
+                <span>Tests & Assignments</span>
+            </a>
+            <a href="progress.html" class="menu-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Trainee Progress</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Live Sessions</h1>
+            <div class="user-info" id="userInfo">
+                <img src="https://via.placeholder.com/40" alt="Trainer">
+                <span>Trainer Name</span>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <a href="trainer-profile.html"><span>Profile</span></a>
+                    </div>
+                    <div class="profile-dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a href="#logout"><span>Logout</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="session-management-header">
+                <h2><i class="fas fa-video"></i> Schedule and Manage Sessions</h2>
+                <button class="btn-primary" id="refresh-calendars">
+                    <i class="fas fa-sync-alt"></i> Refresh Calendars
+                </button>
+            </div>
+
+            <!-- Schedule New Session Section -->
+            <div class="session-form-container">
+                <h3><i class="fas fa-plus-circle"></i> New Session</h3>
+
+                <form id="session-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="session-course">Course</label>
+                            <select id="session-course" required>
+                                <option value="">Select a course</option>
+                                <option>Python Fundamentals</option>
+                                <option>Advanced SQL</option>
+                                <option>Data Analysis with Pandas</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="session-title">Session Title</label>
+                            <input type="text" id="session-title" placeholder="e.g., Python OOP Concepts" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="session-date">Date & Time</label>
+                            <input type="datetime-local" id="session-date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="session-duration">Duration (minutes)</label>
+                            <input type="number" id="session-duration" min="15" value="60" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Platform</label>
+                        <div class="platform-options">
+                            <label class="platform-option">
+                                <input type="radio" name="platform" value="zoom" checked required>
+                                <span class="platform-label">
+                                    <i class="fab fa-zoom platform-icon"></i> Zoom
+                                </span>
+                            </label>
+
+                            <label class="platform-option">
+                                <input type="radio" name="platform" value="teams" required>
+                                <span class="platform-label">
+                                    <i class="fab fa-microsoft platform-icon"></i> Microsoft Teams
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="session-description">Description (Optional)</label>
+                        <textarea id="session-description" rows="3" placeholder="Session agenda or notes"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancel-session">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            Schedule Session
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Upcoming Sessions Section -->
+            <div class="section">
+                <h3><i class="fas fa-calendar-check"></i> Upcoming Sessions</h3>
+
+                <div class="session-list" id="upcoming-sessions">
+                    <!-- Sessions will be added dynamically -->
+                </div>
+
+                <!-- Empty State (shown when no sessions) -->
+                <div class="empty-state" id="empty-state" style="display: none;">
+                    <i class="fas fa-calendar-times"></i>
+                    <h3>No Upcoming Sessions</h3>
+                    <p>Schedule your first session using the form above</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Session Modal -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Edit Session</h3>
+            </div>
+            <form id="edit-session-form">
+                <!-- Form content will be inserted here by JavaScript -->
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/sessions.js"></script>
+</body>
+
+</html>

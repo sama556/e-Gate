@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
  <link rel="stylesheet" href="../css/sytels.css">
+ <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Sidebar -->
@@ -20,11 +22,11 @@
             </div>
             <div class="menu-item">
                 <i class="fas fa-book"></i>
-             <a href="course-mangement.html">  <span>Courses Management</span></a> 
+             <a href="../admin/course-mangement.html">  <span>Courses Management</span></a> 
             </div>
             <div class="menu-item">
                 <i class="fas fa-users"></i>
-               <a href="trainees managment.html"><span>Trainees Management</span></a> 
+               <a href="../admin/trainees managment.html"><span>Trainees Management</span></a> 
             </div>
         </div>
     </div>
@@ -34,7 +36,7 @@
         <div class="header">
             <h1>Admin Dashboard</h1>
             <div class="user-info" id="userInfo">
-                <img src="https://via.placeholder.com/40" alt="Admin">
+                <img src="../images/profile.png" alt="Admin">
                 <span>Admin User</span>
                 <div class="profile-dropdown" id="profileDropdown">
                     <div class="profile-dropdown-item" id="viewProfile">
@@ -47,8 +49,567 @@
                     </div>
                 </div>
             </div>
-        </div>  
-    </div>
+        </div> 
+            <!-- Analytics Dashboard -->
+            <div class="analytics-section">
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="card">
+                        <div class="card-icon bg-blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Trainees</h3>
+                            <p id="trainees-count">0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-green">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Trainers</h3>
+                            <p id="trainers-count">0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-orange">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Courses</h3>
+                            <p id="courses-count">0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-purple">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Certificates</h3>
+                            <p id="certificates-count">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Course Enrollment</h3>
+                        <canvas id="enrollmentChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Attendance Rate</h3>
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Data Tables Section -->
+                <div class="tables-section">
+                    <div class="table-container">
+                        <h3>Recent Courses</h3>
+                        <table id="courses-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-container">
+                        <h3>Recent Trainees</h3>
+                        <table id="trainees-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Specialization</th>
+                                    <th>Join Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Detailed Analytics Section -->
+                <div class="detailed-analytics">
+                    <h2>Detailed Analytics</h2>
+                    <div class="analytics-tabs">
+                        <button class="tab-btn active" onclick="openTab('trainers')">Trainers</button>
+                        <button class="tab-btn" onclick="openTab('trainees')">Trainees</button>
+                        <button class="tab-btn" onclick="openTab('courses')">Courses</button>
+                    </div>
+
+                    <div id="trainers" class="tab-content" style="display:block;">
+                        <!-- Trainers analytics content -->
+                    </div>
+
+                    <div id="trainees" class="tab-content">
+                        <!-- Trainees analytics content -->
+                    </div>
+
+                    <div id="courses" class="tab-content">
+                        <!-- Courses analytics content -->
+                    </div>
+                </div>
+            </div>
+        </div>
     <script src="../js/script"></script>
+    <script>
+        // Dashboard Analytics Script
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the dashboard
+    initDashboard();
+});
+
+// Initialize all dashboard components
+function initDashboard() {
+    // Load summary statistics
+    loadSummaryStats();
+    
+    // Initialize charts
+    initCharts();
+    
+    // Load recent data tables
+    loadRecentCourses();
+    loadRecentTrainees();
+    
+    // Set up tab functionality
+    setupTabs();
+    
+    // Load detailed analytics for the default tab (Trainers)
+    loadTrainersAnalytics();
+}
+
+// Load summary statistics
+function loadSummaryStats() {
+    const stats = {
+        trainees: 248,
+        trainers: 32,
+        courses: 18,
+        certificates: 195
+    };
+    
+    document.getElementById('trainees-count').textContent = stats.trainees;
+    document.getElementById('trainers-count').textContent = stats.trainers;
+    document.getElementById('courses-count').textContent = stats.courses;
+    document.getElementById('certificates-count').textContent = stats.certificates;
+}
+
+// Initialize charts
+function initCharts() {
+    // Enrollment Chart
+    const enrollmentCtx = document.getElementById('enrollmentChart').getContext('2d');
+    const enrollmentChart = new Chart(enrollmentCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Course Enrollment',
+                data: [45, 60, 75, 82, 56, 90],
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
+    // Attendance Chart
+    const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+    const attendanceChart = new Chart(attendanceCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Present', 'Absent', 'Late'],
+            datasets: [{
+                data: [75, 15, 10],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(255, 206, 86, 0.7)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+}
+
+// Load recent courses table
+function loadRecentCourses() {
+    // Mock data - replace with actual API call
+    const courses = [
+        { id: 101, title: 'Advanced Web Development', start_date: '2023-06-15', end_date: '2023-08-15', status: 'Active' },
+        { id: 102, title: 'Data Science Fundamentals', start_date: '2023-07-01', end_date: '2023-09-01', status: 'Active' },
+        { id: 103, title: 'Cybersecurity Basics', start_date: '2023-05-10', end_date: '2023-07-10', status: 'Completed' },
+        { id: 104, title: 'Mobile App Development', start_date: '2023-08-01', end_date: '2023-10-01', status: 'Upcoming' },
+        { id: 105, title: 'Cloud Computing', start_date: '2023-07-15', end_date: '2023-09-15', status: 'Active' }
+    ];
+    
+    const tableBody = document.querySelector('#courses-table tbody');
+    tableBody.innerHTML = '';
+    
+    courses.forEach(course => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${course.id}</td>
+            <td>${course.title}</td>
+            <td>${formatDate(course.start_date)}</td>
+            <td>${formatDate(course.end_date)}</td>
+            <td><span class="status-badge ${course.status.toLowerCase()}">${course.status}</span></td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Load recent trainees table
+function loadRecentTrainees() {
+    // Mock data - replace with actual API call
+    const trainees = [
+        { id: 1001, name: 'Ali Mohmaed', email: 'ali@example.com', specialization: 'Web Development', join_date: '2023-06-10' },
+        { id: 1002, name: 'Sarah Ahmed', email: 'sarah@example.com', specialization: 'Data Science', join_date: '2023-07-05' },
+        { id: 1003, name: 'Kareem Adel', email: 'kareem@example.com', specialization: 'Cybersecurity', join_date: '2023-05-15' },
+        { id: 1004, name: 'Reem Sami', email: 'reem@example.com', specialization: 'Mobile Development', join_date: '2023-07-20' },
+        { id: 1005, name: 'Ahmed Adel', email: 'ahmed@example.com', specialization: 'Cloud Computing', join_date: '2023-06-28' }
+    ];
+    
+    const tableBody = document.querySelector('#trainees-table tbody');
+    tableBody.innerHTML = '';
+    
+    trainees.forEach(trainee => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${trainee.id}</td>
+            <td>${trainee.name}</td>
+            <td>${trainee.email}</td>
+            <td>${trainee.specialization}</td>
+            <td>${formatDate(trainee.join_date)}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Set up tab functionality
+function setupTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Show the selected tab content
+            const tabId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+            document.getElementById(tabId).style.display = 'block';
+            
+            // Load data for the selected tab
+            switch(tabId) {
+                case 'trainers':
+                    loadTrainersAnalytics();
+                    break;
+                case 'trainees':
+                    loadTraineesAnalytics();
+                    break;
+                case 'courses':
+                    loadCoursesAnalytics();
+                    break;
+            }
+        });
+    });
+}
+
+// Load trainers analytics
+function loadTrainersAnalytics() {
+    const tabContent = document.getElementById('trainers');
+    
+    // Mock data - replace with actual API call
+    const trainersData = {
+        total: 32,
+        active: 28,
+        specialties: [
+            { name: 'Web Development', count: 12 },
+            { name: 'Data Science', count: 8 },
+            { name: 'Cybersecurity', count: 5 },
+            { name: 'Mobile Development', count: 4 },
+            { name: 'Cloud Computing', count: 3 }
+        ],
+        experienceLevels: [
+            { range: '0-2 years', count: 5 },
+            { range: '3-5 years', count: 12 },
+            { range: '6-10 years', count: 10 },
+            { range: '10+ years', count: 5 }
+        ]
+    };
+    
+    tabContent.innerHTML = `
+        <div class="analytics-grid">
+            <div class="analytics-card">
+                <h4>Total Trainers</h4>
+                <p class="large-number">${trainersData.total}</p>
+            </div>
+            <div class="analytics-card">
+                <h4>Active Trainers</h4>
+                <p class="large-number">${trainersData.active}</p>
+            </div>
+            <div class="analytics-card chart-card">
+                <h4>Specialty Distribution</h4>
+                <canvas id="trainerSpecialtyChart"></canvas>
+            </div>
+            <div class="analytics-card chart-card">
+                <h4>Experience Levels</h4>
+                <canvas id="trainerExperienceChart"></canvas>
+            </div>
+        </div>
+    `;
+    
+    // Render specialty chart
+    const specialtyCtx = document.getElementById('trainerSpecialtyChart').getContext('2d');
+    new Chart(specialtyCtx, {
+        type: 'pie',
+        data: {
+            labels: trainersData.specialties.map(item => item.name),
+            datasets: [{
+                data: trainersData.specialties.map(item => item.count),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)'
+                ]
+            }]
+        }
+    });
+    
+    // Render experience chart
+    const experienceCtx = document.getElementById('trainerExperienceChart').getContext('2d');
+    new Chart(experienceCtx, {
+        type: 'bar',
+        data: {
+            labels: trainersData.experienceLevels.map(item => item.range),
+            datasets: [{
+                label: 'Trainers',
+                data: trainersData.experienceLevels.map(item => item.count),
+                backgroundColor: 'rgba(54, 162, 235, 0.7)'
+            }]
+        }
+    });
+}
+
+// Load trainees analytics
+function loadTraineesAnalytics() {
+    const tabContent = document.getElementById('trainees');
+    
+    // Mock data - replace with actual API call
+    const traineesData = {
+        total: 248,
+        active: 215,
+        completed: 195,
+        specializations: [
+            { name: 'Web Development', count: 85 },
+            { name: 'Data Science', count: 62 },
+            { name: 'Cybersecurity', count: 45 },
+            { name: 'Mobile Development', count: 32 },
+            { name: 'Cloud Computing', count: 24 }
+        ],
+        progressLevels: [
+            { range: '0-25%', count: 28 },
+            { range: '26-50%', count: 45 },
+            { range: '51-75%', count: 67 },
+            { range: '76-99%', count: 53 },
+            { range: '100%', count: 55 }
+        ],
+    };
+    
+    tabContent.innerHTML = `
+        <div class="analytics-grid">
+            <div class="analytics-card">
+                <h4>Total Trainees</h4>
+                <p class="large-number">${traineesData.total}</p>
+            </div>
+            <div class="analytics-card">
+                <h4>Active Trainees</h4>
+                <p class="large-number">${traineesData.active}</p>
+            </div>
+            <div class="analytics-card">
+                <h4>Completed Training</h4>
+                <p class="large-number">${traineesData.completed}</p>
+            </div>
+            <div class="analytics-card chart-card">
+                <h4>Specialization Distribution</h4>
+                <canvas id="traineeSpecialtyChart"></canvas>
+            </div>
+            <div class="analytics-card chart-card">
+                <h4>Progress Levels</h4>
+                <canvas id="traineeProgressChart"></canvas>
+            </div>
+        </div>
+    `;
+    
+    // Render specialty chart
+    const specialtyCtx = document.getElementById('traineeSpecialtyChart').getContext('2d');
+    new Chart(specialtyCtx, {
+        type: 'doughnut',
+        data: {
+            labels: traineesData.specializations.map(item => item.name),
+            datasets: [{
+                data: traineesData.specializations.map(item => item.count),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)'
+                ]
+            }]
+        }
+    });
+    
+    // Render progress chart
+    const progressCtx = document.getElementById('traineeProgressChart').getContext('2d');
+    new Chart(progressCtx, {
+        type: 'bar',
+        data: {
+            labels: traineesData.progressLevels.map(item => item.range),
+            datasets: [{
+                label: 'Trainees',
+                data: traineesData.progressLevels.map(item => item.count),
+                backgroundColor: 'rgba(75, 192, 192, 0.7)'
+            }]
+        }
+    });
+}
+
+// Load courses analytics
+function loadCoursesAnalytics() {
+    const tabContent = document.getElementById('courses');
+    
+    // Mock data - replace with actual API call
+    const coursesData = {
+        total: 18,
+        active: 12,
+        completed: 6,
+        categories: [
+            { name: 'Web Development', count: 6 },
+            { name: 'Data Science', count: 4 },
+            { name: 'Cybersecurity', count: 3 },
+            { name: 'Mobile Development', count: 3 },
+            { name: 'Cloud Computing', count: 2 }
+        ],
+        statusDistribution: {
+            upcoming: 2,
+            active: 12,
+            completed: 6
+        },
+        enrollmentStats: [
+            { name: 'Advanced Web Development', enrollment: 45 },
+            { name: 'Data Science Fundamentals', enrollment: 38 },
+            { name: 'Cybersecurity Basics', enrollment: 32 },
+            { name: 'Mobile App Development', enrollment: 28 },
+            { name: 'Cloud Computing', enrollment: 25 }
+        ],
+        completionRates: [85, 78, 82, 75, 88, 90, 80, 85]
+    };
+    
+    tabContent.innerHTML = `
+        <div class="analytics-grid">
+            <div class="analytics-card">
+                <h4>Total Courses</h4>
+                <p class="large-number">${coursesData.total}</p>
+            </div>
+            <div class="analytics-card">
+                <h4>Active Courses</h4>
+                <p class="large-number">${coursesData.active}</p>
+            </div>
+            <div class="analytics-card">
+                <h4>Completed Courses</h4>
+                <p class="large-number">${coursesData.completed}</p>
+            </div>
+            <div class="analytics-card chart-card">
+                <h4>Course Categories</h4>
+                <canvas id="courseCategoryChart"></canvas>
+            </div>
+            <div class="analytics-card chart-card">
+                <h4>Status Distribution</h4>
+                <canvas id="courseStatusChart"></canvas>
+            </div>
+        </div>
+    `;
+    
+    // Render category chart
+    const categoryCtx = document.getElementById('courseCategoryChart').getContext('2d');
+    new Chart(categoryCtx, {
+        type: 'pie',
+        data: {
+            labels: coursesData.categories.map(item => item.name),
+            datasets: [{
+                data: coursesData.categories.map(item => item.count),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)'
+                ]
+            }]
+        }
+    });
+    
+    // Render status chart
+    const statusCtx = document.getElementById('courseStatusChart').getContext('2d');
+    new Chart(statusCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Upcoming', 'Active', 'Completed'],
+            datasets: [{
+                data: [
+                    coursesData.statusDistribution.upcoming,
+                    coursesData.statusDistribution.active,
+                    coursesData.statusDistribution.completed
+                ],
+                backgroundColor: [
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(54, 162, 235, 0.7)'
+                ]
+            }]
+        }
+    });
+}
+// Helper function to format dates
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+}
+    </script>
 </body>
 </html>

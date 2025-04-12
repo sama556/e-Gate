@@ -108,6 +108,8 @@
   border-radius: 8px;
   width: 60%;
   max-width: 800px;
+  height: 85vh;
+  overflow: auto;
 }
 
 .modal-header {
@@ -312,4 +314,60 @@
   right: 10px;
   transform: translateY(-50%);
   color: #777;
+}
+.action{
+  display: flex;
+}
+/* Day buttons styling */
+.day-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.day-btn {
+  padding: 6px 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.day-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.day-btn.active {
+  background-color: #2c3e50;
+  color: white;
+  border-color: #2c3e50;
+}
+
+/* Attendance status badges */
+.present {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.absent {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-table th, 
+.attendance-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.attendance-table th {
+  background-color: #f2f2f2;
 }

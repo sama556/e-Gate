@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Enhanced Dashboard Styles */
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Trainer Panel</h3>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item active">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="course-management.html" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span>Course Content</span>
+            </a>
+            <a href="sessions.html" class="menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Live Sessions</span>
+            </a>
+            <a href="tests.html" class="menu-item ">
+                <i class="fas fa-tasks"></i>
+                <span>Tests & Assignments</span>
+            </a>
+            <a href="progress.html" class="menu-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Trainee Progress</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Dashboard</h1>
+            <div class="user-info" id="userInfo">
+                <img src="https://via.placeholder.com/40" alt="Trainer">
+                <span>Trainer Name</span>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <a href="trainer-profile.html"><span>Profile</span></a>
+                    </div>
+                    <div class="profile-dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a href="#logout"><span>Logout</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="dashboard-header">
+                <div>
+                    <h2>Welcome back, <span id="trainer-name">Trainer</span></h2>
+                    <p>Here's what's happening with your training programs today</p>
+                </div>
+                <div class="date-display">
+                    <span id="current-date">Loading date...</span>
+                </div>
+            </div>
+
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <h2>Boost Your Training Effectiveness</h2>
+                <p>You have 3 upcoming sessions and 5 assignments to review this week.</p>
+                <button class="btn-primary">
+                    <i class="fas fa-rocket"></i> Quick Actions
+                </button>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"
+                        style="background-color: rgba(244, 177, 131, 0.2); color: var(--light-orange-peach);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">Active Trainees</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"
+                        style="background-color: rgba(211, 89, 38, 0.2); color: var(--burnt-orange);">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Active Courses</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"
+                        style="background-color: rgba(180, 63, 24, 0.2); color: var(--reddish-orange);">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Upcoming Sessions</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"
+                        style="background-color: rgba(139, 44, 21, 0.2); color: var(--dark-brick-red);">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Pending Reviews</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Sections -->
+            <div class="dashboard-sections">
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-calendar-alt"></i> Upcoming Sessions</h3>
+                        <a href="sessions.html" class="view-all">
+                            View All <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <ul class="upcoming-sessions" id="upcoming-sessions">
+                        <!-- Sessions will be loaded here -->
+                    </ul>
+                </div>
+
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-bell"></i> Recent Activity</h3>
+                        <a href="#" class="view-all">
+                            View All <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <ul class="recent-activity" id="recent-activity">
+                        <!-- Activities will be loaded here -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Course Progress Section -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-line"></i> Course Progress</h3>
+                    <a href="progress.html" class="view-all">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="course-progress">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Python Fundamentals</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Advanced SQL</span>
+                            <span>78%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 78%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Data Analysis</span>
+                            <span>42%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 42%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
