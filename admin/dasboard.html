@@ -25,8 +25,8 @@
              <a href="../admin/course-mangement.html">  <span>Courses Management</span></a> 
             </div>
             <div class="menu-item">
-                <i class="fas fa-users"></i>
-               <a href="../admin/trainees managment.html"><span>Trainees Management</span></a> 
+                <i class="fas fa-chalkboard-teacher"></i>
+               <a href="../admin/trainees managment.html"><span>Trainers Management</span></a> 
             </div>
         </div>
     </div>
@@ -170,26 +170,18 @@
     <script>
         // Dashboard Analytics Script
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the dashboard
     initDashboard();
 });
 
-// Initialize all dashboard components
 function initDashboard() {
-    // Load summary statistics
+
     loadSummaryStats();
-    
-    // Initialize charts
     initCharts();
     
-    // Load recent data tables
     loadRecentCourses();
     loadRecentTrainees();
-    
-    // Set up tab functionality
+
     setupTabs();
-    
-    // Load detailed analytics for the default tab (Trainers)
     loadTrainersAnalytics();
 }
 
@@ -258,7 +250,6 @@ function initCharts() {
 
 // Load recent courses table
 function loadRecentCourses() {
-    // Mock data - replace with actual API call
     const courses = [
         { id: 101, title: 'Advanced Web Development', start_date: '2023-06-15', end_date: '2023-08-15', status: 'Active' },
         { id: 102, title: 'Data Science Fundamentals', start_date: '2023-07-01', end_date: '2023-09-01', status: 'Active' },
@@ -285,7 +276,6 @@ function loadRecentCourses() {
 
 // Load recent trainees table
 function loadRecentTrainees() {
-    // Mock data - replace with actual API call
     const trainees = [
         { id: 1001, name: 'Ali Mohmaed', email: 'ali@example.com', specialization: 'Web Development', join_date: '2023-06-10' },
         { id: 1002, name: 'Sarah Ahmed', email: 'sarah@example.com', specialization: 'Data Science', join_date: '2023-07-05' },
@@ -565,7 +555,7 @@ function loadCoursesAnalytics() {
         </div>
     `;
     
-    // Render category chart
+  
     const categoryCtx = document.getElementById('courseCategoryChart').getContext('2d');
     new Chart(categoryCtx, {
         type: 'pie',

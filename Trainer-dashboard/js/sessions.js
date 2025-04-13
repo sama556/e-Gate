@@ -29,15 +29,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     ];
 
-    // Initialize the page
+ 
     function init() {
         renderSessions();
-        setMinDate();
-
-        // Load platform integrations
+        setMinDate();s
         loadIntegrations();
 
-        // Set up event listeners
+    
         setupEventListeners();
     }
 
@@ -58,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Form submission for new session
         sessionForm.addEventListener('submit', handleSessionSubmission);
 
-        // Cancel button clears the form
         document.getElementById('cancel-session').addEventListener('click', function () {
             if (confirm('Discard this session?')) {
                 sessionForm.reset();
@@ -67,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Refresh calendars button
         document.getElementById('refresh-calendars').addEventListener('click', function () {
-            // In a real app, this would sync with calendar APIs
             alert('Refreshing calendar integrations...');
             loadIntegrations();
         });
@@ -84,10 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    // Load platform integrations
     function loadIntegrations() {
-        // In a real app, this would check connected accounts
+      
         console.log('Loading platform integrations...');
     }
 
@@ -187,9 +181,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const now = new Date();
         const diffDays = Math.floor((date - now) / (1000 * 60 * 60 * 24));
 
-        if (diffDays < 0) return 'var(--reddish-orange)'; // Past
-        if (diffDays < 3) return 'var(--burnt-orange)'; // Upcoming soon
-        return 'var(--light-orange-peach)'; // Future
+        if (diffDays < 0) return 'var(--reddish-orange)'; 
+        if (diffDays < 3) return 'var(--burnt-orange)'; 
+        return 'var(--light-orange-peach)';
     }
 
     // Handle session form submission

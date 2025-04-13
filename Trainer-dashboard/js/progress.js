@@ -87,31 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initialize the page
   function init() {
     renderTrainees();
-    initCharts();
-    setupEventListeners();
   }
-
-  // Set up event listeners
-  function setupEventListeners() {
-    // Filter changes
-    courseFilter.addEventListener('change', filterTrainees);
-    statusFilter.addEventListener('change', filterTrainees);
-    sortFilter.addEventListener('change', filterTrainees);
-    searchFilter.addEventListener('input', filterTrainees);
-
-    // Close modal button
-    document.querySelector('.close-modal').addEventListener('click', () => {
-      traineeModal.style.display = 'none';
-    });
-
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-      if (e.target === traineeModal) {
-        traineeModal.style.display = 'none';
-      }
-    });
-  }
-
   // Render all trainees
   function renderTrainees(traineesToRender = trainees) {
     traineeList.innerHTML = '';
@@ -194,12 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
  
 
-  // Show trainee details in modal
   function showTraineeDetails(trainee) {
-    // Get initials for avatar
     const initials = trainee.name.split(' ').map(n => n[0]).join('');
-
-    // Format dates
     const joinDate = new Date(trainee.joinDate).toLocaleDateString();
     const lastActive = new Date(trainee.lastActive).toLocaleDateString();
 
@@ -345,21 +317,18 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     `;
 
-    // Add event listeners to modal buttons
     document.getElementById('download-report').addEventListener('click', () => {
       alert(`Downloading report for ${trainee.name}`);
-      // In a real app, this would generate and download a PDF
     });
 
     document.getElementById('send-report').addEventListener('click', () => {
       alert(`Sending report to ${trainee.email}`);
-      // In a real app, this would send an email
+  
     });
 
     traineeModal.style.display = 'block';
   }
 
-  // Get status class for styling
   function getStatusClass(status) {
     switch (status) {
       case 'Active': return 'status-published';
@@ -375,65 +344,18 @@ document.addEventListener('DOMContentLoaded', function () {
     return 'var(--reddish-orange)';
   }
 
-  // Initialize charts
-  function initCharts() {
-    // Performance Trends Chart
-    const performanceCtx = document.getElementById('performance-chart');
-    if (performanceCtx) {
-      new Chart(performanceCtx.getContext('2d'), {
-        type: 'line',
-        data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr'],
-          datasets: [{
-            label: 'Average Performance',
-            data: [65, 72, 75, 78],
-            borderColor: '#D35926',
-            backgroundColor: 'rgba(211, 89, 38, 0.1)',
-            fill: true,
-            tension: 0.3
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100
-            }
-          }
-        }
-      });
-    }
+// Select all close buttons
+const closeButtons = document.querySelectorAll('.close-modal');
 
-    // Attendance Distribution Chart
-    const attendanceCtx = document.getElementById('attendance-chart');
-    if (attendanceCtx) {
-      new Chart(attendanceCtx.getContext('2d'), {
-        type: 'doughnut',
-        data: {
-          labels: ['Excellent (90-100%)', 'Good (80-89%)', 'Fair (70-79%)', 'Needs Improvement (<70%)'],
-          datasets: [{
-            data: [15, 18, 6, 3],
-            backgroundColor: [
-              '#F4B183',
-              '#D35926',
-              '#B43F18',
-              '#8B2C15'
-            ],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }
-      });
+
+closeButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const modal = this.closest('.modal');
+    if (modal) {
+      modal.style.display = 'none';
     }
-  }
+  });
+});
 
   // Initialize the page
   init();

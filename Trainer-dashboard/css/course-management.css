@@ -518,3 +518,155 @@
     margin: 10% auto;
   }
 }
+.course-card {
+  position: relative;
+}
+
+.course-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.course-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.admin-badge {
+  background-color: var(--light-orange-peach);
+  color: var(--dark-brick-red);
+}
+
+.trainer-badge {
+  background-color: var(--light-gray);
+  color: var(--dark-text);
+}
+
+/* Module Styles */
+.module-item {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.module-item.existing-module {
+  background-color: #f0f4f8;
+  border-left: 4px solid #4a6fa5;
+}
+
+.module-item.new-module {
+  background-color: #f8f4f0;
+  border-left: 4px solid var(--reddish-orange);
+}
+
+.readonly-field {
+  padding: 8px 12px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  min-height: 38px;
+  color: #666;
+}
+
+/* File Upload Styles */
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-upload-label {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: var(--light-orange-peach);
+  color: var(--dark-text);
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.file-upload-label:hover {
+  background-color: var(--burnt-orange);
+  color: white;
+}
+
+.selected-files {
+  padding: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* Preview Modal Styles */
+.creator-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.creator-badge.admin {
+  background-color: var(--light-orange-peach);
+  color: var(--dark-brick-red);
+}
+
+.creator-badge.trainer {
+  background-color: var(--light-gray);
+  color: var(--dark-text);
+}
+
+/* Course Management Header */
+.course-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-container {
+  background-color: #f8f8f8;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.upload-container:hover {
+  background-color: #f0f0f0;
+  border-color: var(--light-orange-peach);
+}
+
+.upload-btn {
+  display: inline-block;
+  background-color: var(--light-orange-peach);
+  color: var(--dark-text);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin: 10px 0;
+  transition: background-color 0.2s;
+}
+
+.upload-btn:hover {
+  background-color: var(--burnt-orange);
+  color: white;
+}
+
+.supported-formats {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 10px;
+}

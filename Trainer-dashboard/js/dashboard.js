@@ -153,12 +153,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Join session function
     function joinSession(sessionId) {
         const session = trainerData.upcomingSessions.find(s => s.id == sessionId);
         if (session) {
             alert(`Joining session: ${session.title}\n\nThis would launch the meeting in a real application`);
-            // In a real app, this would launch Zoom/Teams with the meeting link
+        
         }
     }
 
@@ -169,16 +168,13 @@ document.addEventListener('DOMContentLoaded', function () {
             profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function (e) {
             if (!e.target.closest('#userInfo')) {
                 profileDropdown.style.display = 'none';
             }
         });
-
-        // Quick actions button
         document.querySelector('.welcome-banner .btn-primary').addEventListener('click', function () {
-            // Show quick actions modal or dropdown
+
             alert('Showing quick actions menu');
         });
     }

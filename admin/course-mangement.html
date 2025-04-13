@@ -28,7 +28,7 @@
                 <a href="course-mangement.html"><span>Courses Management</span></a>
             </div>
             <div class="menu-item">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-chalkboard-teacher"></i>
                 <a href="trainees managment.html"><span>Trainees Management</span></a>
             </div>
         </div>
@@ -151,8 +151,8 @@
                 <div class="form-group">
                     <label for="courseStatus">Course Status</label>
                     <select id="courseStatus" class="form-control" required>
-                        <option value="active">Active</option>
-                        <option value="canceled">Canceled</option>
+                        <option value="active">Active (open)</option>
+                        <option value="active">Active (closed)</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -185,12 +185,10 @@
                 <p><strong>Status:</strong> <span id="viewCourseStatus"></span></p>
                 <p><strong>Trainer:</strong> <span id="viewTrainerName"></span></p>
             </div>
-
-            <!-- In your viewCourseModal, replace the attendance section with this: -->
             <div class="attendance-section">
                 <h4>Attendance Record</h4>
                 <div class="day-buttons" id="dayButtons">
-                    <!-- Day buttons will be generated here -->
+        
                 </div>
                 <table class="attendance-table">
                     <thead>
@@ -240,7 +238,7 @@
                 hours: 40,
                 startDate: "2025-04-15",
                 endDate: "2025-05-15",
-                status: "active",
+                status: "active (open)",
                 trainerId: "T001",
                 trainerName: "Ahmed Ali"
             },
@@ -252,7 +250,7 @@
                 hours: 30,
                 startDate: "2025-04-10",
                 endDate: "2025-05-01",
-                status: "active",
+                status: "active (closed)",
                 trainerId: "T002",
                 trainerName: "Sara Ahmed"
             },
@@ -264,7 +262,7 @@
                 hours: 25,
                 startDate: "2025-03-01",
                 endDate: "2025-03-25",
-                status: "canceled",
+                status: "active (closed)",
                 trainerId: "T003",
                 trainerName: "Mohamed Khaled"
             }

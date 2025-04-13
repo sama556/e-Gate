@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="css/tasks.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Trainer Panel</h3>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="course-management.html" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span>Course Content</span>
+            </a>
+            <a href="sessions.html" class="menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Live Sessions</span>
+            </a>
+            <a href="tasks.html" class="menu-item active">
+                <i class="fas fa-tasks"></i>
+                <span>Tasks</span>
+            </a>
+            <a href="tests.html" class="menu-item">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Tests & Assignments</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Tasks Management</h1>
+            <div class="user-info" id="userInfo">
+                <img src="../images/profile.png" alt="Trainer">
+                <span>Trainer Name</span>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <a href="trainer-profile.html"><span>Profile</span></a>
+                    </div>
+                    <div class="profile-dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a href="../langingPage.html"><span>Logout</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="tasks-management-header">
+                <h2><i class="fas fa-tasks"></i> Manage Tasks</h2>
+                <button class="btn-primary" id="export-tasks">
+                    <i class="fas fa-download"></i> Export Tasks
+                </button>
+            </div>
+
+            <!-- Task Creation Section -->
+            <div class="task-form-container">
+                <form id="task-form" class="task-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-title">Task Title</label>
+                            <input type="text" id="task-title" placeholder="e.g., Complete Python Exercise" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task-course">Course</label>
+                            <select id="task-course" required>
+                                <option value="">Select a course</option>
+                                <option>Python Fundamentals</option>
+                                <option>Advanced SQL</option>
+                                <option>Data Analysis</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-start-date">Start Date</label>
+                            <input type="datetime-local" id="task-start-date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task-end-date">End Date</label>
+                            <input type="datetime-local" id="task-end-date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-description">Task Description</label>
+                        <textarea id="task-description" rows="4" placeholder="Provide task details and instructions..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Priority Level</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="task-priority" value="low"> Low</label>
+                            <label><input type="radio" name="task-priority" value="medium" checked> Medium</label>
+                            <label><input type="radio" name="task-priority" value="high"> High</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Submission Type</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="task-submission-types" value="file"> File Upload</label>
+                            <label><input type="checkbox" name="task-submission-types" value="text"> Text Entry</label>
+                            <label><input type="checkbox" name="task-submission-types" value="link"> URL/Link</label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="save-task-draft">
+                            Save Draft
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            Create Task
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Active Tasks Section -->
+            <div class="section">
+                <h3><i class="fas fa-list-ul"></i> Your Tasks</h3>
+
+                <div class="table-responsive">
+                    <table class="task-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Course</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                                <th>Submissions</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tasks-list">
+                            <!-- Tasks will be loaded here -->
+                            <tr>
+                                <td>1</td>
+                                <td>Python Functions Exercise</td>
+                                <td>Python Fundamentals</td>
+                                <td>2025-04-10 09:00</td>
+                                <td>2025-04-17 23:59</td>
+                                <td><span class="status-badge active">Active</span></td>
+                                <td>12/25</td>
+                                <td class="actions-cell">
+                                    <button class="action-btn view-btn" title="View Task"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn" title="Edit Task"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn" title="Delete Task"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>SQL Joins Practice</td>
+                                <td>Advanced SQL</td>
+                                <td>2025-04-05 08:00</td>
+                                <td>2025-04-12 23:59</td>
+                                <td><span class="status-badge expired">Expired</span></td>
+                                <td>18/20</td>
+                                <td class="actions-cell">
+                                    <button class="action-btn view-btn" title="View Task"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn" title="Edit Task"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn" title="Delete Task"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Data Visualization Project</td>
+                                <td>Data Analysis</td>
+                                <td>2025-04-20 00:00</td>
+                                <td>2025-04-30 23:59</td>
+                                <td><span class="status-badge upcoming">Upcoming</span></td>
+                                <td>0/15</td>
+                                <td class="actions-cell">
+                                    <button class="action-btn view-btn" title="View Task"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit-btn" title="Edit Task"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete-btn" title="Delete Task"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="empty-state" id="empty-state" style="display: none;">
+                    <i class="fas fa-tasks"></i>
+                    <h3>No Tasks Found</h3>
+                    <p>Create your first task using the form above</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Preview Modal -->
+    <div class="modal" id="view-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3><i class="fas fa-eye"></i> Task Details</h3>
+            </div>
+            <div id="task-details">
+                <!-- Task details will be loaded here -->
+            </div>
+            <div class="submissions-section">
+                <h4>Student Submissions</h4>
+                <table class="submissions-table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Submission Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="submissions-list">
+                        <!-- Submissions will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Edit Task</h3>
+            </div>
+            <form id="edit-task-form" class="task-form">
+                <input type="hidden" id="edit-task-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-task-title">Task Title</label>
+                        <input type="text" id="edit-task-title" placeholder="e.g., Complete Python Exercise" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-task-course">Course</label>
+                        <select id="edit-task-course" required>
+                            <option value="">Select a course</option>
+                            <option>Python Fundamentals</option>
+                            <option>Advanced SQL</option>
+                            <option>Data Analysis</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-task-start-date">Start Date</label>
+                        <input type="datetime-local" id="edit-task-start-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-task-end-date">End Date</label>
+                        <input type="datetime-local" id="edit-task-end-date" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-task-description">Task Description</label>
+                    <textarea id="edit-task-description" rows="4" placeholder="Provide task details and instructions..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Priority Level</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="edit-task-priority" value="low"> Low</label>
+                        <label><input type="radio" name="edit-task-priority" value="medium"> Medium</label>
+                        <label><input type="radio" name="edit-task-priority" value="high"> High</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Submission Type</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="edit-task-submission-types" value="file"> File Upload</label>
+                        <label><input type="checkbox" name="edit-task-submission-types" value="text"> Text Entry</label>
+                        <label><input type="checkbox" name="edit-task-submission-types" value="link"> URL/Link</label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-edit">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="delete-modal">
+        <div class="modal-content modal-sm">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirm Deletion</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this task? This action cannot be undone.</p>
+                <p class="delete-task-name"></p>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" id="cancel-delete">
+                    Cancel
+                </button>
+                <button type="button" class="btn-danger" id="confirm-delete">
+                    Delete Task
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Submission Modal -->
+    <div class="modal" id="submission-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3><i class="fas fa-file-alt"></i> Student Submission</h3>
+            </div>
+            <div id="submission-details">
+                <!-- Submission details will be loaded here -->
+            </div>
+            <div class="grading-section">
+                <h4>Grade Submission</h4>
+                <form id="grade-submission-form">
+                    <div class="form-group">
+                        <label for="submission-grade">Grade</label>
+                        <input type="number" id="submission-grade" min="0" max="100" placeholder="Enter grade (0-100)" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="submission-feedback">Feedback</label>
+                        <textarea id="submission-feedback" rows="4" placeholder="Provide feedback to the student..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            Submit Grade
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/task.js"></script>
+</body>
+
+</html>
